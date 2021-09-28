@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const crypto = require("crypto");
 
 const userSchema = new mongoose.Schema(
   {
@@ -15,6 +16,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    verifiedToken: {
+      type: String,
+      required: false,
+    },
+    verifiedTokenExpires: {
+      type: Date,
+      required: false,
+    },
     resetPasswordToken: {
       type: String,
       required: false,
@@ -27,6 +40,15 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = new mongoose.model("User", userSchema);
+userSchema.methods.generateVerifiedToken = function () {
+  this.verifiedToken = crypto.randomBytes(10).toString("hex");
+  this.verifiedTokenExpires = Date.now() + 86400000; //expires in an day
+};
 
+userSchema.methods.generatePasswordReset = function () {
+  this.resetPasswordToken = crypto.randomBytes(20).toString("hex");
+  this.resetPasswordExpires = Date.now() + 3600000; //expires in an hour
+};
+
+const User = new mongoose.model("User", userSchema);
 module.exports = User;
