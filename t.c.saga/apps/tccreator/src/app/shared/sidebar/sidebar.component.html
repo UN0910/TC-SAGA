@@ -1,0 +1,39 @@
+<div class="sidebar">
+  <div class="logo-details">
+    <img src="../../../assets/images/icon-w.png" alt="">
+    <span class="logo_name">TC SAGA</span>
+  </div>
+  <hr>
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/">
+        <i class='bx bx-grid-alt'></i>
+        <span class="links_name">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/products">
+        <i class='bx bx-box'></i>
+        <span class="links_name">Products</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/orders">
+        <i class='bx bx-book-alt'></i>
+        <span class="links_name">Orders</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/user-profile">
+        <i class='bx bxs-user-account'></i>
+        <span class="links_name">profile</span>
+      </a>
+    </li>
+    <li class="log_out">
+      <a routerLink="/dashboard" (click)="onLogout()">
+        <i class='bx bx-log-out'></i>
+        <span class="links_name">Log out</span>
+      </a>
+    </li>
+  </ul>
+</div>

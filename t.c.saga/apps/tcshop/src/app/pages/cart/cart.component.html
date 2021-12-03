@@ -1,0 +1,52 @@
+<tcshop-header></tcshop-header>
+<p-toast></p-toast>
+<div class="shoppingcart">
+  <div class="wrap cf">
+    <div class="heading cf">
+      <h1>My Cart:</h1>
+      <h6>{{cartCount}} items</h6>
+      <a routerLink="/cards" class="continue">Continue Shopping</a>
+    </div>
+    <div class="cart" *ngFor="let cartItem of cartItemsDetailed">
+      <ul class="cartWrap">
+        <li class="items even">
+
+          <div class="infoWrap">
+            <div class="cartSection">
+
+              <img [src]="cartItem.product.image" [alt]="cartItem.product.name" class="itemImg" />
+              <p class="itemNumber">##{{cartItem.product._id}}</p>
+              <h3>{{cartItem.product.name}}</h3>
+              <p>
+                <p-inputNumber mode="decimal" class="qty" [showButtons]="true" [inputId]="cartItem.product.id" [min]="1"
+                  [max]="10" [(ngModel)]="cartItem.quantity" (onInput)="updateCartItemQuantity($event, cartItem)">
+                </p-inputNumber>
+                <span>x ₹{{cartItem.product.price}}</span>
+              </p>
+            </div>
+            <div class="prodTotal cartSection">
+              <p>₹{{ cartItem.product?.price * cartItem.quantity}}</p>
+            </div>
+            <div class="cartSection removeWrap">
+              <a class="remove" (click)="deleteCartItem(cartItem)">x</a>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <div class="subtotal cf">
+      <ul>
+        <li class="totalRow"><span class="label">Subtotal</span><span class="value">₹{{totalPrice}}</span></li>
+
+        <li class="totalRow"><span class="label">Shipping</span><span class="value">FREE</span></li>
+
+        <li class="totalRow"><span class="label">Tax</span><span class="value">₹0.00</span></li>
+        <li class="totalRow"><span class="labelfinal">Total</span><span class="valuefinal">₹{{totalPrice}}</span></li>
+        <li class="totalRow">
+          <button (click)="onCheckout()" class="btn continue">CHECKOUT</button>
+      </ul>
+    </div>
+  </div>
+</div>
+<tcshop-footer></tcshop-footer>

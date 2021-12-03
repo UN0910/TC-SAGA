@@ -1,0 +1,63 @@
+<tcshop-header></tcshop-header>
+<p-toast></p-toast>
+<div class="contactpage">
+  <h1>CONTACT-US</h1>
+  <div class="contact-us">
+    <div class="container">
+      <div class="content">
+        <div class="left-side">
+          <div class="address details">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="topic">Address</div>
+            <div class="text-one">SVVV, Campus : Indore – Ujjain Road,</div>
+            <div class="text-two">Indore – 453111</div>
+          </div>
+          <div class="phone details">
+            <i class="fas fa-phone-alt"></i>
+            <div class="topic">Phone</div>
+            <div class="text-one">+0098 9893 5647</div>
+            <div class="text-two">+0096 3434 5678</div>
+          </div>
+          <div class="email details">
+            <i class="fas fa-envelope"></i>
+            <div class="topic">Email</div>
+            <div class="text-one">tcsaga0910@gmail.com</div>
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="topic-text">Send us a message</div>
+          <p>For any query, suggestions and issues feel free to contact us. We will answer you within 24hrs.
+            <br>
+            It's our pleasure to help you.
+          </p>
+          <form [formGroup]="form">
+            <div class="input-box">
+              <input formControlName="name" id="name" type="text" placeholder="Enter your name">
+              <small *ngIf="form.controls.name.invalid && isSubmitted" class="p-error">NAME IS REQUIRED!!!</small>
+            </div>
+            <div class="input-box">
+              <input formControlName="email" id="email" type="text" placeholder="Enter your email">
+              <small *ngIf="form.controls.email.invalid && isSubmitted" class="p-error">
+                <span *ngIf="form.controls.email.errors?.required">EMAIL IS REQUIRED!!!</span>
+                <span *ngIf="form.controls.email.errors?.email">EMAIL IS INVALID!!!</span>
+              </small>
+            </div>
+            <div class="input-box">
+              <input formControlName="phone" id="phone" mode="decimal" maxlength="10" placeholder="Enter your phone">
+              <small *ngIf="form.controls.phone.invalid && isSubmitted" class="p-error">PHONE IS REQUIRED!!!</small>
+            </div>
+            <div class="input-box">
+              <input formControlName="message" id="message" type="text" placeholder="Enter your message">
+              <small *ngIf="form.controls.message.invalid && isSubmitted" class="p-error">MESSAGE IS REQUIRED!!!</small>
+            </div>
+
+            <div class="button">
+              <input (click)="onSubmit()" type="button" value="Send Now">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<tcshop-footer></tcshop-footer>

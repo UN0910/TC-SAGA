@@ -1,0 +1,115 @@
+<p-toast></p-toast>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form class="sign-in-form" [formGroup]="loginForm" *ngIf="!isforgot && !isVerify">
+        <h2 class="title">SIGN IN</h2>
+        <div class="input-feild">
+          <i class="fa fa-user"></i>
+          <input formControlName="email" type="email" placeholder="Email" name="email">
+        </div>
+        <small *ngIf="loginForm.controls.email.invalid && isSubmitted" class="p-error">
+          <span *ngIf="loginForm.controls.email.errors?.required">EMAIL IS REQUIRED!!!</span>
+          <span *ngIf="loginForm.controls.email.errors?.email">EMAIL IS INVALID!!!</span>
+        </small>
+        <div class="input-feild">
+          <i class="fa fa-lock"></i>
+          <input formControlName="password" type="password" placeholder="Password" name="password" minlength="6"
+            maxlength="12">
+        </div>
+        <small *ngIf="loginForm.controls.password.invalid && isSubmitted" class="p-error">
+          <span *ngIf="loginForm.controls.password.errors?.required">PASSWORD IS REQUIRED!!!</span>
+          <span *ngIf="loginForm.controls.password.errors?.minlength">MINIMUM 6 CHARACTERS REQUIRED!!!</span>
+        </small>
+        <button class="btn solid" (click)="onLoginSubmit()">LOG IN</button><br>
+        <p class="forgot" style="text-align: center;">
+          can't remember the password ?<br>
+          <a (click)="onResetPassword()">reset password</a>
+        <p class="forgot" style="text-align: center;">
+          <br>account is not verified ?<br>
+          <a (click)="onVerifyEmail()">resend verification</a>
+      </form>
+
+      <form class="sign-in-form" [formGroup]="forgotForm" *ngIf="isforgot">
+        <h2 class="title">RESET PASSWORD</h2>
+        <div class="input-feild">
+          <i class="fa fa-user"></i>
+          <input formControlName="email" type="email" placeholder="Email" name="email">
+        </div>
+        <small *ngIf="forgotForm.controls.email.invalid && isSubmitted3" class="p-error">
+          <span *ngIf="forgotForm.controls.email.errors?.required">EMAIL IS REQUIRED!!!</span>
+          <span *ngIf="forgotForm.controls.email.errors?.email">EMAIL IS INVALID!!!</span>
+        </small>
+        <button class="btn solid" (click)="onForgotSubmit()">SUBMIT</button><br>
+        <p class="forgot" style="text-align: center;">
+          ALREADY HAVE AN ACCOUNT ?<br>
+          <a (click)="onResetPasswordUndo()">SIGN IN</a>
+      </form>
+
+      <form class="sign-in-form" [formGroup]="verifyForm" *ngIf="isVerify">
+        <h2 class="title" style="text-align: center;">RESEND VERIFICATION<br>LINK</h2>
+        <div class="input-feild">
+          <i class="fa fa-user"></i>
+          <input formControlName="email" type="email" placeholder="Email" name="email">
+        </div>
+        <small *ngIf="verifyForm.controls.email.invalid && isSubmitted4" class="p-error">
+          <span *ngIf="verifyForm.controls.email.errors?.required">EMAIL IS REQUIRED!!!</span>
+          <span *ngIf="verifyForm.controls.email.errors?.email">EMAIL IS INVALID!!!</span>
+        </small>
+        <button class="btn solid" (click)="onVerifySubmit()">SUBMIT</button><br>
+        <p class="forgot" style="text-align: center;">
+          ACCOUNT IS VERIFIED ?<br>
+          <a (click)="onVerifyEmailUndo()">SIGN IN</a>
+      </form>
+
+      <form [formGroup]="registerForm" class="sign-up-form">
+        <h2 class="title">SIGN UP</h2>
+        <div class="input-feild">
+          <i class="fa fa-user"></i>
+          <input formControlName="userName" type="text" placeholder="Username" name="userName">
+        </div>
+        <small *ngIf="registerForm.controls.userName.invalid && isSubmitted2" class="p-error">
+          USERNAME IS REQUIRED!!!
+        </small>
+        <div class="input-feild">
+          <i class="fa fa-envelope"></i>
+          <input formControlName="email" type="email" placeholder="Email" name="email">
+        </div>
+        <small *ngIf="registerForm.controls.email.invalid && isSubmitted2" class="p-error">
+          <span *ngIf="registerForm.controls.email.errors?.required">EMAIL IS REQUIRED!!!</span>
+          <span *ngIf="registerForm.controls.email.errors?.email">EMAIL IS INVALID!!!</span>
+        </small>
+        <div class="input-feild">
+          <i class="fa fa-lock"></i>
+          <input formControlName="password" type="password" placeholder="Password" name="password" minlength="6"
+            maxlength="12">
+        </div>
+        <small *ngIf="registerForm.controls.password.invalid && isSubmitted2" class="p-error">
+          <span *ngIf="registerForm.controls.password.errors?.required">PASSWORD IS REQUIRED!!!</span>
+          <span *ngIf="registerForm.controls.password.errors?.minlength">MINIMUM 6 CHARACTERS REQUIRED!!!</span>
+        </small>
+        <button class="btn solid" (click)="onRegisterSubmit()">SIGN UP</button>
+      </form>
+    </div>
+  </div>
+  <div class="panel_container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>NEW HERE?</h3>
+        <button class="btn transparent" id="sign-up-btn" (click)="onSignUp()">Sign up</button>
+      </div>
+      <img src="/assets/images/Subscriber-bro.svg" class="image" alt="">
+    </div>
+
+
+    <div class="panel right-panel">
+      <div class="content">
+        <h3>ONE OF US?</h3>
+        <button class="btn transparent" id="sign-in-btn" (click)="onSignIn()">Sign in</button>
+      </div>
+      <img src="/assets/images/pic.svg" class="image" alt="">
+    </div>
+
+  </div>
+</div>

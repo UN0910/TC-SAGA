@@ -1,0 +1,43 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+.product-list {
+  padding-top: 104px;
+}
+
+.p-card {
+  color: black;
+  border-radius: 12px;
+}
+
+.p-card .p-card-title {
+  font-size: 35px;
+  font-weight: 900;
+}
+
+.p-card .p-card-subtitle {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.p-toolbar {
+  border-radius: 12px;
+}
+
+.p-button {
+  border-radius: 12px;
+  border: black;
+  background-color: black;
+  margin: 10px;
+}
+
+.p-grid {
+  padding-bottom: 10px;
+}
+.p-datatable .p-datatable-thead > tr > th {
+  font-weight: 900;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  font-weight: 300;
+}

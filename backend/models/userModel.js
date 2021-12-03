@@ -16,6 +16,29 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    street: {
+      type: String,
+    },
+    apartment: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    pincode: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    phone: {
+      type: Number,
+    },
+    userRole: {
+      type: String,
+      default: "CUSTOMER",
+      enum: ["CUSTOMER", "CREATOR", "ADMIN"],
+    },
     isVerified: {
       type: Boolean,
       default: false,
@@ -50,5 +73,4 @@ userSchema.methods.generatePasswordReset = function () {
   this.resetPasswordExpires = Date.now() + 3600000; //expires in an hour
 };
 
-const User = new mongoose.model("User", userSchema);
-module.exports = User;
+exports.User = mongoose.model("User", userSchema);

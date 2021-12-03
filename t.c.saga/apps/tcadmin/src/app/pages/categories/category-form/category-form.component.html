@@ -1,0 +1,40 @@
+<p-toast></p-toast>
+<div class="category-form">
+  <p-card [header]="editMode? 'EDIT CATEGORY':'ADD CATEGORY'" subheader="YOU CAN ADD OR EDIT THE CATEGORIES...">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <p-button [label]="editMode? 'UPDATE':'ADD'" icon="pi pi-plus" (click)="onSubmit()"></p-button>
+            <p-button label="CANCEL" icon="pi pi-times" (click)="onCancel()"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-field p-grid">
+            <label for="name" class="p-col-fixed" style="width:100px">NAME</label>
+            <div class="p-col">
+              <input formControlName="name" id="name" type="text" pInputText>
+              <small *ngIf="form.controls.name.invalid && isSubmitted" class="p-error">NAME IS REQUIRED!!!</small>
+            </div>
+          </div>
+          <div class="p-field p-grid">
+            <label for="icon" class="p-col-fixed" style="width:100px">ICON</label>
+            <div class="p-col">
+              <input formControlName="icon" id="icon" type="text" pInputText>
+              <small *ngIf="form.controls.icon.invalid && isSubmitted" class="p-error">ICON IS REQUIRED!!!</small>
+            </div>
+          </div>
+          <div class="p-field p-grid">
+            <label for="color" class="p-col-fixed" style="width:100px">COLOR</label><br>
+            <p-colorPicker formControlName="color"></p-colorPicker>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

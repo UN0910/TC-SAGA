@@ -1,0 +1,74 @@
+<p-toast></p-toast>
+<div class="category-form">
+  <p-card header="USER-PROFILE" subheader="YOU CAN EDIT THE YOUR PROFILE...">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <p-button label="UPDATE" icon="pi pi-plus" (click)="onSubmit()"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="userName">USERNAME</label>
+              <input formControlName="userName" id="userName" type="text" pInputText>
+              <small *ngIf="form.controls.userName.invalid && isSubmitted" class="p-error">USERNAME IS
+                REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="email">EMAIL</label>
+              <input formControlName="email" id="email" type="email" [readonly]="true" pInputText>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="password">PASSWORD</label>
+              <input formControlName="password" id="password" type="password" pInputText>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="phone">PHONE</label>
+              <p-inputNumber formControlName="phone" mode="decimal" inputId="phone" [useGrouping]="false">
+              </p-inputNumber>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="street">STREET</label>
+              <input formControlName="street" id="street" type="text" pInputText>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="apartment">APARTMENT</label>
+              <input formControlName="apartment" id="apartment" type="text" pInputText>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="city">CITY</label>
+              <input formControlName="city" id="city" type="text" pInputText>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="pincode">PINCODE</label>
+              <p-inputNumber formControlName="pincode" mode="decimal" inputId="pincode" [useGrouping]="false">
+              </p-inputNumber>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="country">COUNTRY</label><br>
+              <p-dropdown [options]="countries" [filter]="true" filterBy="name" placeholder="SELECT A COUNTRY"
+                formControlName="country" optionLabel="name" optionValue="id" [showClear]="true"></p-dropdown>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

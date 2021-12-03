@@ -1,0 +1,101 @@
+<p-toast></p-toast>
+<div class="user-form">
+  <p-card [header]="editMode? 'EDIT USER':'ADD USER'" subheader="YOU CAN ADD OR EDIT THE USERS...">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <p-button [label]="editMode? 'UPDATE':'ADD'" icon="pi pi-plus" (click)="onSubmit()"></p-button>
+            <p-button label="CANCEL" icon="pi pi-times" (click)="onCancel()"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="userName">USERNAME</label>
+              <input formControlName="userName" id="userName" type="text" pInputText>
+              <small *ngIf="form.controls.userName.invalid && isSubmitted" class="p-error">USERNAME IS
+                REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="email">EMAIL</label>
+              <input formControlName="email" id="email" type="text" pInputText>
+              <small *ngIf="form.controls.email.invalid && isSubmitted" class="p-error">
+                <span *ngIf="form.controls.email.errors?.required">EMAIL IS REQUIRED!!!</span>
+                <span *ngIf="form.controls.email.errors?.email">EMAIL IS INVALID!!!</span>
+              </small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="password">PASSWORD</label>
+              <input formControlName="password" id="password" type="password" pInputText>
+              <small *ngIf="form.controls.password.invalid && isSubmitted" class="p-error">PASSWORD IS
+                REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="phone">PHONE</label>
+              <p-inputNumber formControlName="phone" mode="decimal" inputId="phone" [useGrouping]="false">
+              </p-inputNumber>
+              <small *ngIf="form.controls.phone.invalid && isSubmitted" class="p-error">PHONE IS REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="userRole">USER-ROLE</label><br>
+              <p-dropdown [options]="userRole" placeholder="SELECT A USER-ROLE" formControlName="userRole"
+                optionLabel="name" optionValue="id" [showClear]="true"></p-dropdown>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="isVerified">VERIFIED</label><br>
+              <p-inputSwitch formControlName="isVerified"></p-inputSwitch>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="street">STREET</label>
+              <input formControlName="street" id="street" type="text" pInputText>
+              <small *ngIf="form.controls.street.invalid && isSubmitted" class="p-error">STREET IS REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="apartment">APARTMENT</label>
+              <input formControlName="apartment" id="apartment" type="text" pInputText>
+              <small *ngIf="form.controls.apartment.invalid && isSubmitted" class="p-error">APARTMENT IS
+                REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="city">CITY</label>
+              <input formControlName="city" id="city" type="text" pInputText>
+              <small *ngIf="form.controls.city.invalid && isSubmitted" class="p-error">CITY IS REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="pincode">PINCODE</label>
+              <p-inputNumber formControlName="pincode" mode="decimal" inputId="pincode" [useGrouping]="false">
+              </p-inputNumber>
+              <small *ngIf="form.controls.pincode.invalid && isSubmitted" class="p-error">PINCODE IS REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="country">COUNTRY</label><br>
+              <p-dropdown [options]="countries" [filter]="true" filterBy="name" placeholder="SELECT A COUNTRY"
+                formControlName="country" optionLabel="name" optionValue="id" [showClear]="true"></p-dropdown>
+              <!-- <input formControlName="country" id="country" type="text" pInputText> -->
+              <small *ngIf="form.controls.country.invalid && isSubmitted" class="p-error">COUNTRY IS
+                REQUIRED!!!</small>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

@@ -1,0 +1,80 @@
+<p-toast></p-toast>
+<div class="product-form">
+  <p-card [header]="editMode? 'EDIT PRODUCT':'ADD PRODUCT'" subheader="YOU CAN ADD OR EDIT THE PRODUCTS...">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <p-button [label]="editMode? 'UPDATE':'ADD'" icon="pi pi-plus" (click)="onSubmit()"></p-button>
+            <p-button label="CANCEL" icon="pi pi-times" (click)="onCancel()"></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="name">NAME</label>
+              <input formControlName="name" id="name" type="text" pInputText>
+              <small *ngIf="form.controls.name.invalid && isSubmitted" class="p-error">NAME IS REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="image">IMAGE</label><br>
+              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)">
+              <div>
+                <img [src]="editMode? imageDisplay2:imageDisplay" style="width: 20%; margin-top: 10px;" alt="">
+              </div>
+              <small *ngIf="form.controls.image.invalid && isSubmitted" class="p-error">IMAGE IS REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="price">PRICE</label>
+              <p-inputNumber formControlName="price" mode="decimal" inputId="price" [useGrouping]="false">
+              </p-inputNumber>
+              <small *ngIf="form.controls.price.invalid && isSubmitted" class="p-error">PRICE IS REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="isFeatured">FEATURED</label><br>
+              <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6" *ngIf="editMode">
+              <label for="postedBy">POSTED BY</label>
+              <input formControlName="postedBy" id="postedBy" type="text" [readonly]="true" pInputText>
+              <small *ngIf="form.controls.postedBy.invalid && isSubmitted" class="p-error">POSTED BY IS
+                REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+              <label for="category">CATEGORY</label><br>
+              <p-dropdown [options]="categories" [filter]="true" filterBy="name" placeholder="SELECT A CATEGORY"
+                formControlName="category" optionLabel="name" optionValue="_id" [showClear]="true"></p-dropdown>
+              <small *ngIf="form.controls.category.invalid && isSubmitted" class="p-error">CATEGORY IS
+                REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12">
+              <label for="description">DESCRIPTION</label>
+              <textarea formControlName="description" id="description" type="text" rows="4" pInputTextarea></textarea>
+              <small *ngIf="form.controls.description.invalid && isSubmitted" class="p-error">DESCRIPTION IS
+                REQUIRED!!!</small>
+            </div>
+
+            <div class="p-field p-col-12">
+              <label for="detailDescription">DETAIL-DESCRIPTION</label>
+              <textarea formControlName="detailDescription" id="detailDescription" type="text" rows="4"
+                pInputTextarea></textarea>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

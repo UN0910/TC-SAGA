@@ -1,0 +1,54 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.order-detail {
+  padding-top: 104px;
+}
+
+.p-card {
+  color: #353535;
+  border-radius: 12px;
+}
+
+.p-card .p-card-title {
+  font-size: 35px;
+  font-weight: 900;
+}
+
+.p-card .p-card-subtitle {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.p-button {
+  border-radius: 12px;
+  border: #353535;
+  background-color: #353535;
+  margin: 10px;
+  font-weight: 700;
+}
+
+.p-grid {
+  padding-bottom: 10px;
+}
+
+.p-inputtext {
+  font-family: 'Poppins', sans-serif;
+  color: #353535;
+  font-weight: 300;
+  font-size: 15px;
+}
+.p-field {
+  font-size: 20px;
+  font-weight: 800;
+}
+.p-fieldset {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 300;
+}
+.p-fieldset.p-fieldset-toggleable .p-fieldset-legend a {
+  font-size: 17px;
+  font-weight: 900;
+}

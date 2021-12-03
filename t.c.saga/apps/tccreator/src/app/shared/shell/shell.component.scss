@@ -1,0 +1,15 @@
+.admin-wrapper {
+  position: relative;
+  top: 0;
+  min-height: 100%;
+  width: calc(100% - 260px);
+  left: 260px;
+  transition: all 0.5s ease;
+}
+
+@media (max-width: 1240px) {
+  .admin-wrapper {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+}

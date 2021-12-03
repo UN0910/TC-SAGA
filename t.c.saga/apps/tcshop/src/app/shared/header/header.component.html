@@ -1,0 +1,78 @@
+<nav>
+  <div class="navbar">
+    <i class='bx bx-menu' (click)="menuOpen()"></i>
+    <div class="logo">
+      <a routerLink="/">
+        <img src="../../../assets/images/icon-w.png" alt="">
+      </a>
+    </div>
+    <div class="nav-links">
+      <div class="sidebar-logo">
+        <span class="logo-name">
+          <img src="../../../assets/images/icon-w.png" alt="">
+        </span>
+        <i class='bx bx-x' (click)="menuClose()"></i>
+      </div>
+      <ul class="links">
+        <li><a routerLink="/">HOME</a></li>
+        <li><a routerLink="/cards">CARDS</a></li>
+        <li><a routerLink="/about-us">ABOUT US</a></li>
+        <li><a routerLink="/contact-us">CONTACT US</a></li>
+      </ul>
+    </div>
+    <div class="tools">
+      <!-- <div class="search-box">
+        <i class='bx bx-search' (click)="searchOpen()"></i>
+        <div class="input-box">
+          <input type="text" placeholder="Search...">
+        </div>
+      </div> -->
+      <div class="user" style="cursor: pointer;">
+        <div class="dropdown">
+          <svg class="dropbtn" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+            viewBox="0 0 172 172" style=" fill:#000000;">
+            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+              stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+              font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+              <path d="M0,172v-172h172v172z" fill="none"></path>
+              <g fill="#ffffff">
+                <path
+                  d="M86,17.2c-19.00027,0 -34.4,15.39973 -34.4,34.4v5.73333c0,19.00027 15.39973,34.4 34.4,34.4c19.00027,0 34.4,-15.39973 34.4,-34.4v-5.73333c0,-19.00027 -15.39973,-34.4 -34.4,-34.4zM85.9888,108.93333c-22.96773,0 -52.43707,12.42324 -60.91667,23.44844c-5.24027,6.81693 -0.25182,16.68489 8.34245,16.68489h105.15964c8.59427,0 13.58271,-9.86796 8.34245,-16.68489c-8.4796,-11.01947 -37.96013,-23.44844 -60.92786,-23.44844z">
+                </path>
+              </g>
+            </g>
+          </svg>
+          <div class="dropdown-content">
+            <a *ngIf="!isUser" routerLink="/authenticate">
+              <h6>AUTHENTICATE</h6>
+            </a>
+            <a *ngIf="isUser" routerLink="/profile">
+              <h6>PROFILE</h6>
+            </a>
+            <a *ngIf="isUser" (click)="onLogout()">
+              <h6>LOG-OUT</h6>
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <div class="cart" style="cursor: pointer;" routerLink="/cart">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="90" height="90" viewBox="0 0 172 172"
+          style=" fill:#000000;">
+          <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none"
+            font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+            <path d="M0,172v-172h172v172z" fill="none"></path>
+            <g fill="#ffffff">
+              <path
+                d="M11.46667,11.46667c-2.06765,-0.02924 -3.99087,1.05709 -5.03322,2.843c-1.04236,1.78592 -1.04236,3.99474 0,5.78066c1.04236,1.78592 2.96558,2.87225 5.03322,2.843h10.7724c1.29517,0 2.37592,0.81106 2.74349,2.06042l24.43385,83.06614c2.14446,7.29116 8.88821,12.34011 16.49453,12.34011h62.93229c7.73092,0 14.55694,-5.22483 16.59532,-12.67604l14.89323,-54.61224c0.47113,-1.72445 0.11102,-3.56997 -0.97382,-4.99081c-1.08485,-1.42084 -2.7703,-2.25442 -4.55795,-2.25424h-111.72161l-7.08828,-24.10911c-0.00373,0 -0.00747,0 -0.0112,0c-1.78818,-6.07784 -7.40968,-10.29089 -13.73984,-10.29089zM68.8,131.86667c-6.33287,0 -11.46667,5.1338 -11.46667,11.46667c0,6.33287 5.1338,11.46667 11.46667,11.46667c6.33287,0 11.46667,-5.1338 11.46667,-11.46667c0,-6.33287 -5.1338,-11.46667 -11.46667,-11.46667zM126.13333,131.86667c-6.33287,0 -11.46667,5.1338 -11.46667,11.46667c0,6.33287 5.1338,11.46667 11.46667,11.46667c6.33287,0 11.46667,-5.1338 11.46667,-11.46667c0,-6.33287 -5.1338,-11.46667 -11.46667,-11.46667z">
+              </path>
+            </g>
+          </g>
+        </svg>
+        <p-badge value={{cartCount}}></p-badge>
+      </div>
+    </div>
+
+  </div>
+</nav>

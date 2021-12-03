@@ -1,0 +1,197 @@
+<tcshop-header></tcshop-header>
+<p-toast></p-toast>
+<div class="aboutpage">
+  <h1>MY PROFILE</h1>
+  <div class="contact-us">
+    <div class="container">
+      <div class="content">
+        <div class="left-side">
+          <div class="profilepic">
+            <img src="https://img.icons8.com/color/96/000000/circled-user-male-skin-type-7--v1.png" />
+            <h6>{{username}}</h6>
+          </div>
+          <hr>
+          <div class="fields">
+            <ul>
+              <li>
+                <h4 (click)="onAccountForm()">MY ACCOUNT</h4>
+              </li>
+              <li>
+                <h4 (click)="onAddressForm()">MY ADDRESS</h4>
+              </li>
+              <li>
+                <h4 (click)="onMyOrders()">MY ORDERS</h4>
+              </li>
+              <li>
+                <h4 (click)="onWishlist()">MY WISHLIST</h4>
+              </li>
+            </ul>
+          </div>
+          <div class="update" *ngIf="isAccountForm || isAddressForm && !myOrders && !isWishlist">
+            <button (click)="onSubmit()">UPDATE</button>
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="maininfo" *ngIf="!isAccountForm && !isAddressForm && !myOrders && !isWishlist">
+            <img src="../../../assets/images/logo-black.png" alt="">
+            <h4>WELCOME TO TC-SAGA</h4>
+            <button (click)="onLogout()">LOG-OUT</button>
+          </div>
+          <div class="article">
+            <form [formGroup]="accountForm" *ngIf="isAccountForm && !isAddressForm && !myOrders && !isWishlist">
+              <div class="p-fluid p-formgrid p-grid">
+                <div class="heading">
+                  <h3>PERSONAL DETAILS...</h3>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="userName">USERNAME</label>
+                  <input formControlName="userName" id="userName" type="text" pInputText>
+                  <small *ngIf="accountForm.controls.userName.invalid && isSubmitted" class="p-error">USERNAME IS
+                    REQUIRED!!!</small>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="email">EMAIL</label>
+                  <input formControlName="email" id="email" type="email" [readonly]="true" pInputText>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="password">PASSWORD</label>
+                  <input formControlName="password" id="password" type="password" pInputText>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="phone">PHONE</label>
+                  <p-inputNumber formControlName="phone" mode="decimal" inputId="phone" [useGrouping]="false">
+                  </p-inputNumber>
+                  <small *ngIf="accountForm.controls.phone.invalid && isSubmitted" class="p-error">PHONE IS
+                    REQUIRED!!!</small>
+                </div>
+              </div>
+            </form>
+
+            <form [formGroup]="addressForm" *ngIf="isAddressForm && !isAccountForm && !myOrders && !isWishlist">
+              <div class="p-fluid p-formgrid p-grid">
+                <h3>ADDRESS DETAILS...</h3>
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="street">STREET</label>
+                  <input formControlName="street" id="street" type="text" pInputText>
+                  <small *ngIf="addressForm.controls.street.invalid && isSubmitted" class="p-error">STREET IS
+                    REQUIRED!!!</small>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="apartment">APARTMENT</label>
+                  <input formControlName="apartment" id="apartment" type="text" pInputText>
+                  <small *ngIf="addressForm.controls.apartment.invalid && isSubmitted" class="p-error">APARTMENT IS
+                    REQUIRED!!!</small>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="city">CITY</label>
+                  <input formControlName="city" id="city" type="text" pInputText>
+                  <small *ngIf="addressForm.controls.city.invalid && isSubmitted" class="p-error">CITY IS
+                    REQUIRED!!!</small>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="pincode">PINCODE</label>
+                  <p-inputNumber formControlName="pincode" mode="decimal" inputId="pincode" [useGrouping]="false">
+                  </p-inputNumber>
+                  <small *ngIf="addressForm.controls.pincode.invalid && isSubmitted" class="p-error">PINCODE IS
+                    REQUIRED!!!</small>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="country">COUNTRY</label><br>
+                  <p-dropdown [options]="countries" [filter]="true" filterBy="name" placeholder="SELECT A COUNTRY"
+                    formControlName="country" optionLabel="name" optionValue="id" [showClear]="true"></p-dropdown>
+                  <small *ngIf="addressForm.controls.country.invalid && isSubmitted" class="p-error">COUNTRY IS
+                    REQUIRED!!!</small>
+                </div>
+
+              </div>
+            </form>
+
+            <div class="p-grid" *ngIf="myOrders && !isAddressForm && !isAccountForm && !isWishlist">
+              <div class="p-col-12">
+                <div class="heading">
+                  <h3>ORDER DETAILS...</h3>
+                </div>
+                <p-table styleClass="p-datatable-gridlines" [value]="orders" responsiveLayout="scroll">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>ID</th>
+                      <th pSortableColumn="totalPrice">TOTAL PRICE<p-sortIcon field="totalPrice"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="dateOrdered">DATE ORDERED<p-sortIcon field="dateOrdered"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="status">STATUS<p-sortIcon field="status"></p-sortIcon>
+                      </th>
+                      <th>ACTIONS</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-order>
+                    <tr>
+                      <td>{{order._id}}</td>
+                      <td>{{order.totalPrice}}</td>
+                      <td>{{order.dateOrdered | date:"medium"}}</td>
+                      <td>
+                        <p-tag [value]="order.status"></p-tag>
+                      </td>
+                      <td>
+                        <p-button (click)="cancelOrder(order._id)" styleClass="p-button-error" icon="pi pi-trash">
+                        </p-button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+                <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+                </p-confirmDialog>
+              </div>
+            </div>
+
+            <div class="p-grid" *ngIf="isWishlist && !isAddressForm && !isAccountForm && !myOrders">
+              <div class="p-col-12">
+                <div class="heading">
+                  <h3>WISHLIST DETAILS...</h3>
+                </div>
+                <p-table [paginator]="true" [rows]="1" styleClass="p-datatable-gridlines" [value]="wishlists"
+                  responsiveLayout="scroll">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th pSortableColumn="name">NAME<p-sortIcon field="name"></p-sortIcon>
+                      </th>
+                      <th>IMAGE</th>
+                      <th pSortableColumn="price">PRICE<p-sortIcon field="price"></p-sortIcon>
+                      </th>
+                      <th>ADD TO CART</th>
+                      <th>ACTIONS</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-wishlist>
+                    <tr>
+                      <td>{{wishlist.product.name}}</td>
+                      <td><img [src]="wishlist.product.image" [alt]="wishlist.product.name" style="width: 70%;" /></td>
+                      <td>{{wishlist.product.price}}</td>
+                      <td>
+                        <p-button (click)="addToCart(wishlist.product._id, wishlist._id)" icon="pi pi-check">
+                        </p-button>
+                      </td>
+                      <td>
+                        <p-button (click)="removeProduct(wishlist._id)" styleClass="p-button-error" icon="pi pi-trash">
+                        </p-button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+                <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+                </p-confirmDialog>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <tcshop-footer></tcshop-footer>

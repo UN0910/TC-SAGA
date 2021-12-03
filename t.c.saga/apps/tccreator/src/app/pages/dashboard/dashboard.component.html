@@ -1,0 +1,80 @@
+<section class="home-section">
+  <div class="home-content">
+    <p-card header="DASHBOARD" subheader="LATEST UPDATES...">
+      <div class="overview-boxes" *ngIf="statistics.length">
+        <div class="box" routerLink="/orders">
+          <div class="right-side">
+            <div class="box-topic">Total Order</div>
+            <div class="number">{{ statistics[0] }}</div>
+          </div>
+          <i class='bx bx-book-alt cart'></i>
+        </div>
+        <div class="box" routerLink="/products">
+          <div class="right-side">
+            <div class="box-topic">Total Products</div>
+            <div class="number">{{ statistics[1] }}</div>
+          </div>
+          <i class='bx bx-box cart'></i>
+        </div>
+        <div class="box" routerLink="/users">
+          <div class="right-side">
+            <div class="box-topic">Ft. Products</div>
+            <div class="number">{{ statistics[2] }}</div>
+          </div>
+          <i class='bx bx-user cart'></i>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Total Sales</div>
+            <div class="number">{{ statistics[3] | currency:"INR":"₹" }}</div>
+          </div>
+          <i class='bx bx-rupee cart'></i>
+        </div>
+      </div>
+
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title"><i class='bx bxs-shopping-bag-alt cart2'></i>Recent Sales</div>
+          <p-table styleClass="p-datatable-gridlines" [value]="orders" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>ORDERED BY</th>
+                <th>DATE ORDERED</th>
+                <th>STATUS</th>
+                <th>TOTAL PRICE</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+              <tr>
+                <td>{{order.user.userName}}</td>
+                <td>{{order.dateOrdered}}</td>
+                <td>{{order.status}}</td>
+                <td>{{order.totalPrice}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+
+        <div class="top-sales box">
+          <div class="title"><i class='bx bxs-right-top-arrow-circle cart2'></i>Top Featured Products</div>
+          <p-table styleClass="p-datatable-gridlines" [value]="products" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>PRODUCT</th>
+                <th>PRICE</th>
+                <th>IMAGE</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+              <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td><img [src]="product.image" [alt]="product.name" style="width: 100%;" /></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+<p-toast></p-toast>
+<div class="order-detail">
+  <p-card header="VIEW ORDER" subheader="YOU CAN EDIT THE ORDER-STATUS..." *ngIf="order">
+
+    <p-fieldset legend="ORDER-DETAILS" [toggleable]="true">
+      <div class="grid">
+        <div class="col font-bold text-center text-lg">ORDER-ID</div>
+        <div class="col font-bold text-center text-lg">ORDER-DATE</div>
+        <div class="col font-bold text-center text-lg">ORDER-STATUS</div>
+      </div>
+      <div class="grid">
+        <div class="col text-center text-base">{{ order._id }}</div>
+        <div class="col text-center text-base">{{ order.dateOrdered | date: 'medium' }}</div>
+        <div class="col text-center text-base">
+          <p-dropdown [options]="status" optionLabel="name" optionValue="id" (onChange)="onStatusChange($event)"
+            [(ngModel)]="selectedStatus">
+          </p-dropdown>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="ORDER-ITEMS" [toggleable]="true">
+      <div class="grid">
+        <div class="col font-bold text-center text-lg">NAME</div>
+        <div class="col font-bold text-center text-lg">CATEGORY</div>
+        <div class="col font-bold text-center text-lg">QUANTITY</div>
+        <div class="col font-bold text-center text-lg">PRICE</div>
+        <div class="col font-bold text-center text-lg">SUBTOTAL</div>
+      </div>
+      <div class="grid" *ngFor="let orderItem of order.orderItems">
+        <div class="col text-center text-base">{{ orderItem.product?.name }}</div>
+        <div class="col text-center text-base">{{ orderItem.product?.category?.name }}</div>
+        <div class="col text-center text-base">{{ orderItem.quantity }}</div>
+        <div class="col text-center text-base">{{ orderItem.product?.price | currency:"INR":"₹" }}</div>
+        <div class="col text-center text-base">{{ orderItem.product?.price * orderItem.quantity | currency:"INR":"₹" }}
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="grid" style="color: green">
+        <div class="col text-center col-offset-7 font-bold text-lg">TOTAL PRICE</div>
+
+        <div class="col text-center font-bold text-base">{{ order.totalPrice | currency:"INR":"₹" }}</div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="ORDER-ADDRESS" [toggleable]="true">
+      <div class="grid">
+        <div class="col font-bold text-center text-lg">ORDER-ADDRESS</div>
+        <div class="col font-bold text-center text-lg">CUSTOMER-INFO</div>
+      </div>
+      <div class="grid">
+        <div class="col text-center text-base">
+          {{ order.shippingAddress1 }}, {{ order.shippingAddress2 }}<br />
+          {{ order.city }}, {{ order.country }}<br />
+          {{ order.pincode }}
+        </div>
+        <div class="col text-center text-base">
+          {{ order.user?.userName }}<br />
+          {{ order.user?.email }}<br />
+          {{ order.phone }}
+        </div>
+      </div>
+    </p-fieldset>
+  </p-card>
+</div>

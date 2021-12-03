@@ -1,0 +1,28 @@
+<div class="contact-detail">
+  <p-card header="VIEW CONTACT-FORM" subheader="YOU CAN SEE THE CONTACT-FORM..." *ngIf="contact">
+
+    <p-fieldset legend="CONTACT-FORM DETAILS" [toggleable]="true">
+      <div class="grid">
+        <div class="col font-bold text-center text-lg">CONTACT-ID</div>
+        <div class="col font-bold text-center text-lg">USER-NAME</div>
+        <div class="col font-bold text-center text-lg">EMAIL</div>
+        <div class="col font-bold text-center text-lg">PHONE</div>
+      </div>
+      <div class="grid">
+        <div class="col text-center text-base">{{ contact._id }}</div>
+        <div class="col text-center text-base">{{ contact.name }}</div>
+        <div class="col text-center text-base">{{ contact.email }}</div>
+        <div class="col text-center text-base">{{ contact.phone }}</div>
+      </div>
+      <br>
+      <br>
+      <div class="grid">
+        <div class="col font-bold text-center text-lg">MESSAGE</div>
+      </div>
+      <div class="grid">
+        <div class="col text-center text-base">{{ contact.message }}</div>
+      </div>
+    </p-fieldset>
+
+  </p-card>
+</div>
